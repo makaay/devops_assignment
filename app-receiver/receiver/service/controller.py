@@ -38,3 +38,7 @@ def upload_file(filename):
     # SHOULD
     # GO
     # HERE
+    data = {'msg': 'File is decrypted and saved to /usr/src/app-receiver/output/testfile.xml',
+                         'status_code': 201} 
+    return jsonify(data), 201
+    

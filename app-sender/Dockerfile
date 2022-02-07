@@ -22,3 +22,4 @@ RUN pipenv install  --system --deploy --ignore-pipfile
 # AN IMPORTANT
 # DOCKERFILE DIRECTIVE
 # COULD BE MISSING
+ENTRYPOINT ["python", "sender"]

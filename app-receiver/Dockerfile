@@ -12,14 +12,18 @@ EXPOSE 8080
 # DOCKERFILE DIRECTIVES
 # ARE MISSING
 
+COPY receiver ./
+ADD decryption_key /run/secrets/
 COPY Pipfile ./
 COPY Pipfile.lock ./
 
 RUN mkdir -p /usr/src/app-receiver/output
-RUN pip install --no-cache-dir pipenv
+RUN pip install --no-cache-dir pipenv pytest
 RUN pipenv install --system --deploy --ignore-pipfile
+#RUN pytest receiver
 
-ENTRYPOINT ["gunicorn", "server:app"]
+#ENTRYPOINT ["gunicorn", "server:app"]
+ENTRYPOINT ["gunicorn", "-b", "0.0.0.0:8080", "server:app"]
 
 # MULTI-STAGE BUILDS
 # CAN BE ENABLED
